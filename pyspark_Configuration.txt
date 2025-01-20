@@ -1,0 +1,39 @@
+##Ensuring that the java is their on the machine
+	java --version
+
+	setup JAVA_HOME  
+		add this to your shell configuration file (~/.bashrc)
+			-export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+			-export PATH=$JAVA_HOME/bin:$PATH
+
+##Download Spark Package from Official website or just take this link
+	https://dlcdn.apache.org/spark/spark-3.5.4/spark-3.5.4-bin-hadoop3.tgz
+	-* Follow the commands 
+		-sudo su
+		-mkdir -p /opt/spark
+		-cd /opt/spark
+		-wget https://dlcdn.apache.org/spark/spark-3.5.4/spark-3.5.4-bin-hadoop3.tgz
+(this will download tar file of apache spark )
+		-tar xvf spark-3.5.4-bin-hadoop3.tgz
+		-ll
+		-cd 
+	-*Set spark environment variables
+		-vi .bashrc
+	-*add this at last of the file
+		SPARK_HOME=/opt/spark/spark-3.5.4-bin-hadoop3
+		export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/bin
+		-source .bashrc
+		-spark-shell
+	-*if all goes well we will see spark console
+##Now your Spark engine is ready outside root
+	-sudo pip3 install pyspark findspark
+-*ensure you also have py4j
+##now again Set the environment variables 
+	-vi ~/.bashrc
+-*by adding this to the end of the file or just make changes accordly
+	export SPARK_HOME='/opt/spark/spark-3.5.4-bin-hadoop3'
+	export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+	export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/lib/py4j-*.zip
+	export PYSPARK_PYTHON=python3
+ 	-source ~/.bashrc  --its for reloading
+##Hence spark setup is done just need some environment to use it in (i.e jupyter notebook)
