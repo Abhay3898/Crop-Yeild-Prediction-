@@ -1,0 +1,82 @@
+
+## Crop Yield Prediction using ML 
+
+## Project Overview
+	This project uses PySpark to build a machine learning model for predicting crop yield based on historical and environmental data. By leveraging distributed computing power, the model processes large datasets to provide more accurate and efficient predictions.
+
+##Literature Review
+Anakha Venugopal,  has proposed a mobile application which predicts the
+crop’s name and also calculates its yield. The dataset used included some meteorological
+data such as temperature, wind speed and humidity and also the crop production related
+data. However, the data related to soil was not included in the dataset and the absence
+of the soil data limited the analysis of soil-related factors.
+
+## I started it with this to overcome this limitation and so I decided to search the data with soil details so to increase its efficiency. 
+
+### Technologies Used
+- Jupyter Notebook
+- Python: Programming language used for model building and data processing.
+- PySpark: A Python API for Spark, enabling distributed data processing and machine learning.
+- Machine Learning Algorithms
+- Pandas/Numpy: For local data manipulation and preprocessing.
+### Components of the Project
+1. Data Collection: 
+   - Collect data on historical crop yields, weather conditions, soil types, and farming practices.
+   - Data can be large-scale, so PySpark is used for distributed data processing.
+
+2. Data Preprocessing: 
+   - Cleaning and handling missing values using PySpark's DataFrame API.
+   - Feature engineering to create meaningful features.
+   - Scaling and encoding data where necessary (using PySpark’s MLlib).
+
+3. Model Building:
+   - Train machine learning models like Regression models on the distributed dataset using PySpark MLlib.
+   - Split data into training and testing sets[80% for training & 20 for testing], ensuring efficient handling of large datasets.
+   
+4. Model Evaluation:
+   - Evaluate the model's performance using  Root Mean Square Error (RMSE) [that tells us average difference between actual value and predicted value].
+  
+
+5. Deployment:
+   - The model could be deployed as a real-time prediction API, integrating with large-scale farming data sources.
+
+###Something About Synthetic Data
+	-data is randomly generated based on realistic ranges but does not use actual historical data. The values are chosen to mimic reasonable conditions (e.g., typical temperature, rainfall, soil properties) but aren't tied to any specific real-world events, regions, or historical records.
+--Can say my data is some what synthetic some what not because I have referred the Sources such that it has real-World existence and then extended those records.
+
+### Implementation Details
+- Data Processing with PySpark: 
+   - Leveraged PySpark’s distributed DataFrame API to handle large datasets efficiently. This allowed for faster data processing and scaling when dealing with huge volumes of input data.
+   - Used PySpark's MLlib to train and evaluate models in a distributed manner, ensuring that the system can handle growing datasets.
+
+- Model Training and Tuning:
+   - Experimented with linear regression to predict crop yields. PySpark's parallel processing capability helped speed up model training.
+
+## Actual Status of the Project:
+
+	-Due to not getting the desired data with such features that I wanted in one dataset.
+	- So Created a synthetic data i.e composed most of  the features on which yeild depends
+	and processed that data handled categorical data by stringindexer. 
+	- And Trained ML model on this synthetic data , I have used Linear Regression algorithm to 
+	predict the yeild and have achieved 72% of accuracy.It can be increased, Just building or 
+	searching the more accurate data to work on so it will worth that accuracy.
+	  
+
+
+### Next Steps/Future Enhancements
+- Expand the dataset to include real-time data sources.
+- Getting/Searching some Real actual on ground data to ensure its correctness.
+- so that  to have a model that will predict the yeild more correctly.
+- Implement a user interface or an API to allow farmers to input real-time data and receive crop yield predictions based on current conditions.
+
+
+##References
+	1. Anakha Venugopal, Aparna S, Jinsu Mani, Rima Mathew, Vinu Williams Crop Yield Prediction using Machine Learning Algorithms,2021
+	2. https://www.ijert.org/crop-yield-prediction-using-machine-learning-algorithms
+	3. https://www.data.gov.in
+	4. https://www.kaggle.com/
+	5. 
+	4. https://en.wikipedia.org/wiki/Agriculture
+
+	https://spark.apache.org
+	
