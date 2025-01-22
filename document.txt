@@ -61,6 +61,31 @@ of the soil data limited the analysis of soil-related factors.
 	predict the yeild and have achieved 72% of accuracy.It can be increased, Just building or 
 	searching the more accurate data to work on so it will worth that accuracy.
 	  
+##Accuracy based on the Range:
+
+Assume the range is 10 tons/ha as used earlier:
+Accuracy%=100−(0.2910×100)=100−2.9=97.1%
+Accuracy%=100−(100.29​×100)=100−2.9=97.1%
+Accuracy based on the Mean:
+Accuracy%=100−(0.2910×100)=100−2.9=97.1%
+Accuracy%=100−(100.29​×100)=100−2.9=97.1%
+2. For Random Forest with RMSE of 0.24 tons/ha:
+Accuracy based on the Range:
+Accuracy%=100−(0.2410×100)=100−2.4=97.6%
+Accuracy%=100−(100.24​×100)=100−2.4=97.6%
+Accuracy based on the Mean:
+Accuracy%=100−(0.2410×100)=100−2.4=97.6%
+Accuracy%=100−(100.24​×100)=100−2.4=97.6%
+Summary of Approximated Accuracy:
+
+    Decision Tree: ~97.1% accuracy
+    Random Forest: ~97.6% accuracy
+    Logistic Regression: ~84.3% accuracy (based on RMSE 1.57 tons/ha)
+
+Conclusion:
+
+    Random Forest and Decision Tree seem to have significantly better performance with much lower RMSE values than Logistic Regression, leading to higher accuracy.
+
 
 
 ### Next Steps/Future Enhancements
