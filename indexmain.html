@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Yield Prediction</title>
+</head>
+<body>
+    <h2>Crop Yield Prediction</h2>
+    <form action="/predict" method="post">
+        <label for="state_index">State Index:</label><br>
+        <input type="number" step="any" id="state_index" name="state_index" required><br><br>
+
+        <label for="crop_index">Crop Index:</label><br>
+        <input type="number" step="any" id="crop_index" name="crop_index" required><br><br>
+
+        <label for="rainfall">Rainfall (mm):</label><br>
+        <input type="number" step="any" id="rainfall" name="rainfall" required><br><br>
+
+        <label for="temperature">Temperature (°C):</label><br>
+        <input type="number" step="any" id="temperature" name="temperature" required><br><br>
+
+        <label for="soil_ph">Soil pH:</label><br>
+        <input type="number" step="any" id="soil_ph" name="soil_ph" required><br><br>
+
+        <label for="nitrogen">Nitrogen (ppm):</label><br>
+        <input type="number" step="any" id="nitrogen" name="nitrogen" required><br><br>
+
+        <button type="submit">Predict Yield</button>
+    </form>
+</body>
+</html>
