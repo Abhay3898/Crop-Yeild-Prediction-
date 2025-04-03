@@ -1,4 +1,3 @@
-# Load the uploaded FAO dataset to inspect the data structure
 
 import pandas as pd
 

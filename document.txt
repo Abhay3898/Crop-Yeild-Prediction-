@@ -22,6 +22,7 @@ of the soil data limited the analysis of soil-related factors.
 - PySpark: A Python API for Spark, enabling distributed data processing and machine learning.
 - Machine Learning Algorithms
 - Pandas/Numpy: For local data manipulation and preprocessing.
+
 ### Components of the Project
 1. Data Collection: 
    - Collect data on historical crop yields, weather conditions, soil types, and farming practices.
@@ -37,7 +38,7 @@ of the soil data limited the analysis of soil-related factors.
    - Split data into training and testing sets[80% for training & 20 for testing], ensuring efficient handling of large datasets.
    
 4. Model Evaluation:
-   - Evaluate the model's performance using  Root Mean Square Error (RMSE) [that tells us average difference between actual value and predicted value].
+   - Evaluate the model's performance using  Root Mean Square Error (RMSE) [that tells us average difference between actual value and predicted value]. Also used the R2 for evaluation (which tell us how is our model suited for the data).
   
 
 5. Deployment:
@@ -45,7 +46,7 @@ of the soil data limited the analysis of soil-related factors.
 
 ###Something About Synthetic Data
 	-data is randomly generated based on realistic ranges but does not use actual historical data. The values are chosen to mimic reasonable conditions (e.g., typical temperature, rainfall, soil properties) but aren't tied to any specific real-world events, regions, or historical records.
---Can say my data is some what synthetic some what not because I have referred the Sources such that it has real-World existence and then extended those records.
+--Can say my data is some what synthetic some what not because I have referred the Sources such that it has real-World existence and then extended those records. Has also put some data of our farm soil analysis that was done by us last year.
 
 ### Implementation Details
 - Data Processing with PySpark: 
@@ -88,7 +89,6 @@ Summary of Approximated Accuracy:
 Conclusion:
 
     Random Forest and Decision Tree seem to have significantly better performance with much lower RMSE values than Logistic Regression, leading to higher accuracy.
-
 
 
 ### Next Steps/Future Enhancements
