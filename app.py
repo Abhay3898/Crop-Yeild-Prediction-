@@ -15,7 +15,7 @@ model = RandomForestRegressionModel.load(model_path)
 
 @app.route('/')
 def home():
-    return render_template('index.html')  # Serve the frontend
+    return render_template('indexmain.html')  # Serve the frontend
 
 @app.route('/predict', methods=['POST'])
 def predict():
