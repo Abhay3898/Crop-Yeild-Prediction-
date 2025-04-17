@@ -1,31 +1,51 @@
 import pandas as pd
 import numpy as np
-from datetime import datetime
 import random
+from datetime import datetime, timedelta
 
-# Parameters
-regions = ['Punjab', 'Haryana', 'Rajasthan']
-crop_types = ['Wheat', 'Maize', 'Rice']
-soil_types = ['Clay', 'Loamy', 'Sandy']
-n_samples = 100
-
-# Generate synthetic data
-data = {
-    "Region": np.random.choice(regions, n_samples),
-    "Crop Type": np.random.choice(crop_types, n_samples),
-    "Rainfall (mm)": np.random.uniform(200, 800, n_samples).round(1),
-    "Temperature (°C)": np.random.uniform(15, 35, n_samples).round(1),
-    "Soil pH": np.random.uniform(5.5, 7.5, n_samples).round(1),
-    "Nitrogen (ppm)": np.random.uniform(20, 60, n_samples).round(1),
-    "Sowing Date": [datetime(2023, random.randint(1, 6), random.randint(1, 28)).strftime("%Y-%m-%d") for _ in range(n_samples)],
-    "Harvest Date": [datetime(2023, random.randint(7, 12), random.randint(1, 28)).strftime("%Y-%m-%d") for _ in range(n_samples)],
-    "Yield (tons/ha)": np.random.uniform(1.5, 5.5, n_samples).round(1),
-    "Soil Type": np.random.choice(soil_types, n_samples)
+# Define regions and crop-specific soil types
+regions = ['Nagpur', 'Amravati', 'Latur', 'Pune', 'Aurangabad', 'Nashik', 'Solapur', 'Ratnagiri', 'Kolhapur', 'Satara']
+crops = ['Wheat', 'Jowar', 'Bajra', 'Maize', 'Toor', 'Moong', 'Rice']
+soil_mapping = {
+    'Wheat': ['Loamy', 'Clay'],
+    'Jowar': ['Sandy', 'Loamy'],
+    'Bajra': ['Sandy', 'Loamy'],
+    'Maize': ['Loamy', 'Sandy'],
+    'Toor': ['Loamy', 'Clay'],
+    'Moong': ['Sandy', 'Loamy'],
+    'Rice': ['Clay', 'Laterite']
 }
 
-# Create DataFrame
-df_synthetic_crop_yield = pd.DataFrame(data)
+data = []
 
-# Save to CSV
-df_synthetic_crop_yield.to_csv("synthetic_crop_yield_dataset.csv", index=False)
+for _ in range(1000):
+    region = random.choice(regions)
+    crop = random.choice(crops)
+    soil = random.choice(soil_mapping[crop])
+    rainfall = round(np.random.uniform(600, 1400), 1) if crop == 'Rice' else round(np.random.uniform(400, 1100), 1)
+    temperature = round(np.random.uniform(20, 35), 1)
+    ph = round(np.random.uniform(5.5, 7.5), 1)
+    nitrogen = round(np.random.uniform(30, 70), 1)
+
+    sowing_date = datetime.strptime(f"2023-{random.randint(1, 12):02d}-{random.randint(1, 28):02d}", "%Y-%m-%d")
+    duration = random.randint(90, 160)
+    harvest_date = sowing_date + timedelta(days=duration)
+
+    yield_tons_per_ha = round(np.random.uniform(2.0, 5.5), 2)
+
+    data.append([
+        region, crop, rainfall, temperature, ph, nitrogen,
+        sowing_date.strftime('%Y-%m-%d'),
+        harvest_date.strftime('%Y-%m-%d'),
+        yield_tons_per_ha, soil
+    ])
+
+# DataFrame
+columns = [
+    'Region', 'Crop Type', 'Rainfall (mm)', 'Temperature (°C)', 'Soil pH', 'Nitrogen (ppm)',
+    'Sowing Date', 'Harvest Date', 'Yield (tons/ha)', 'Soil Type'
+]
+df = pd.DataFrame(data, columns=columns)
+df.to_csv("Synthetic_Crops_dataset.csv", index=False)
+print("✅ Dataset generated: ")
 

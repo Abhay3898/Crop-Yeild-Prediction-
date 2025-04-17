@@ -1,4 +1,91 @@
+<!-- templates/index.html -->
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crop Yield Prediction</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-4">
+  <div class="container">
+    <h2 class="mb-4">Enter Farm Details</h2>
+    <form action="/predict" method="post">
+      <div class="mb-3">
+        <label>Region</label>
+        <select name="region">
+          <option>Nagpur</option>
+          <option>Amravati</option>
+          <option>Pune</option>
+          <option>Latur</option>
+          <option>Kolhapur</option>
+          <option>Ratnagiri</option>
+          <option>Solapur</option>
+          <option>Nashik</option>
+          <option>Aurangabad</option>
+          <option>Satara</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label>Crop Type</label>
+        <select name="crop" class="form-select">
+          <option>Rice</option>
+          <option>Wheat</option>
+          <option>Maize</option>
+          <option>Jowar</option>
+          <option>Bajra</option>
+          <option>Toor</option>
+          <option>Moong</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label>Soil Type</label>
+        <select name="soil" class="form-select">
+          <option>Clay</option>
+          <option>Loamy</option>
+          <option>Sandy</option>
+          <option>Laterite</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label>Rainfall (mm)</label>
+        <input type="number" step="0.1" name="rainfall" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label>Temperature (°C)</label>
+        <input type="number" step="0.1" name="temperature" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label>Soil pH</label>
+        <input type="number" step="0.1" name="ph" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label>Nitrogen (ppm)</label>
+        <input type="number" step="0.1" name="nitrogen" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label>Sowing Date</label>
+        <input type="date" name="sowing" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label>Harvest Date</label>
+        <input type="date" name="harvest" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Predict Yield</button>
+    </form>
+    {% if prediction %}
+      <div class="alert alert-success mt-4">
+        <strong>Predicted Yield:</strong> {{ prediction }} tons/ha
+      </div>
+    {% elif error %}
+      <div class="alert alert-danger mt-4">
+        <strong>Error:</strong> {{ error }}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,17 +95,42 @@
 </head>
 <body class="container mt-5">
     <h2 class="text-center">Crop Yield Prediction</h2>
-    <form id="prediction-form">
-        <div class="mb-3">
-            <label for="feature1" class="form-label">Feature 1</label>
-            <input type="number" class="form-control" id="feature1" name="feature1" required>
+    <form class="Crop Details">
+        <div class="col-md-6">
+          <label for="Region" class="form-label">Region</label>
+          <input type="text" class="form-control" id="inputEmail4">
         </div>
-        <div class="mb-3">
-            <label for="feature2" class="form-label">Feature 2</label>
-            <input type="number" class="form-control" id="feature2" name="feature2" required>
+        <div class="col-md-6">
+          <label for="Crop" class="form-label">Crop Name </label>
+          <input type="text" class="form-control" id="crop_name">
         </div>
-        <button type="submit" class="btn btn-primary">Predict</button>
-    </form>
+        <div class="col-12">
+          <label for="Rainfall" class="form-label">Rainfall (mm)</label>
+          <input type="number" class="form-control" id="Rainfall" placeholder="">
+        </div>
+        <div class="col-12">
+          <label for="Temperature" class="form-label">Temperature (°C)</label>
+          <input type="number" class="form-control" id="Temperature" >
+        </div>
+        <div class="col-md-6">
+          <label for="Soil pH" class="form-label">Soil (pH)</label>
+          <input type="number" class="form-control" id="inputCity">
+        </div>
+        
+        <div class="col-md-2">
+          <label for="Nitrogen level" class="form-label">Nitrogen level(ppm)</label>
+          <input type="number" class="form-control" id="nitrogen">
+        </div>
+        <div class="col-md-2">
+            <label for="Soil Type" class="form-label">Soil type</label>
+            <input type="text" class="form-control" id="soil_type">
+          </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Predict</button>
+        </div>
+      </form>
+    
+    
 
     <h3 class="mt-4" id="result"></h3>
 
@@ -41,36 +153,4 @@
     </script>
 </body>
 </html>
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crop Yield Prediction</title>
-</head>
-<body>
-    <h2>Crop Yield Prediction</h2>
-    <form action="/predict" method="post">
-        <label for="state_index">State Index:</label><br>
-        <input type="number" step="any" id="state_index" name="state_index" required><br><br>
-
-        <label for="crop_index">Crop Index:</label><br>
-        <input type="number" step="any" id="crop_index" name="crop_index" required><br><br>
-
-        <label for="rainfall">Rainfall (mm):</label><br>
-        <input type="number" step="any" id="rainfall" name="rainfall" required><br><br>
-
-        <label for="temperature">Temperature (°C):</label><br>
-        <input type="number" step="any" id="temperature" name="temperature" required><br><br>
-
-        <label for="soil_ph">Soil pH:</label><br>
-        <input type="number" step="any" id="soil_ph" name="soil_ph" required><br><br>
-
-        <label for="nitrogen">Nitrogen (ppm):</label><br>
-        <input type="number" step="any" id="nitrogen" name="nitrogen" required><br><br>
-
-        <button type="submit">Predict Yield</button>
-    </form>
-</body>
-</html> -->
+ -->
